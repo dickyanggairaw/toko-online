@@ -1,0 +1,23 @@
+[
+    {
+        "nama": "Redmi 9T",
+        "image": "https://id.360buyimg.com/Indonesia/s220x220_/amZzL3Q3Ni8xMjcvNTUyOTUwNTQ4MS8zNzQxMjkvZTVkY2E0OTAvNjA4OGRmY2ZONjRjMGYzY2Y.jpg.dpg.webp",
+        "harga": 2299000,
+        "stock": 10,
+        "description": "Redmi 9T (6GB+128GB) 48MP Quad Kamera Layar 6.53” FHD+ Dot Drop Snapdragon 662 6000mAh - carbon gray"
+    },
+    {
+        "nama": "Redmi 9C",
+        "image": "https://id.360buyimg.com/Indonesia/s880x0_/amZzL3Q3OS8yNTAvNTYxODg4MjI1MS80NzE1MzgvOTRmOTYyN2EvNjA4OGNlM2JONTA4NjM0ZjQ.png.webp",
+        "harga": 1599000,
+        "stock": 10,
+        "description": "Xiaomi Redmi 9C (4GB+64GB) [BLUE] Layar 6.53 HD+, Baterai 5000mAh, Helio G35, 13MP Kamera, Garansi Resmi"
+    },
+    {
+        "nama": "POCO F3",
+        "image": "https://id.360buyimg.com/Indonesia/s880x0_/amZzL3Q3MC8zMjQvNTIyNDk0MTkxNi8zOTg0MTYvZGIzZjBjYjEvNjA3ZWU2ZDVONWFmZjc4N2Y.png.webp",
+        "harga": 5499000,
+        "stock": 10,
+        "description": "POCO F3 (8GB + 256GB) Snapdragon™ 870 48MP AI Triple Kamera Layar 120Hz 6.67” AMOLED 4520mAh - Black"
+    }
+]
