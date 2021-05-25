@@ -55,6 +55,21 @@ class User {
             })
         })
     }
+
+    static findById (id) {
+        return new Promise((resolve, reject) => {
+            let findUser = `SELECT * FROM users WHERE id = $1`
+            let values = [+id]
+
+            pool.query(findUser, values, (err, result) => {
+                if(err) {
+                    reject(err)
+                }else {
+                    resolve(result)
+                }
+            })
+        })
+    }
 }
 
 module.exports = User
