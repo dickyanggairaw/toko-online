@@ -9,6 +9,13 @@ const products = `CREATE TABLE IF NOT EXISTS products(
     description VARCHAR
 )`;
 
+const users = `CREATE TABLE IF NOT EXISTS users(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR NOT NULL UNIQUE,
+    password VARCHAR,
+    role VARCHAR
+)`;
+
 const pooling = (data) => {
     return new Promise((resolve, reject) =>{
         pool.query(data, (err, result) => {
@@ -20,7 +27,7 @@ const pooling = (data) => {
         })
     })
 }
-pooling(products)
+pooling(users)
     .then((data) =>{
         console.log('create data table success')
     })
