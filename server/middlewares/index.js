@@ -1,6 +1,7 @@
-const { authorization, authentication } = require('./auth')
+const { authorization, authentication, authorize } = require('./auth')
 
 module.exports = {
     authorization,
-    authentication
+    authentication,
+    authorize
 }

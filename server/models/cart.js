@@ -9,7 +9,8 @@ class Cart {
     }
     static FindAll(id) {
       return new Promise((resolve, reject) => {
-        let carts = `SELECT* FROM carts
+        let carts = `SELECT carts.id, carts.cart_stock, carts.user_id, carts.product_id, nama, image, harga, stock, description
+        FROM carts
         JOIN products
         ON carts.product_id = products.id
         WHERE user_id = $1`
@@ -40,16 +41,45 @@ class Cart {
           })
       })
     }
-    static destroy(user_id, product_id) {
+
+    static destroy(id) {
       return new Promise((resolve, reject) => {
-        let deleteCart = `DELETE FROM carts WHERE product_id = $1 AND user_id = $2`
-        let values = [+product_id, +user_id]
+        let deleteCart = `DELETE FROM carts WHERE id = $1`
+        let values = [+id]
         pool.query(deleteCart, values, (err, result) => {
           if(err){
             reject(err)
           }else{
             resolve(result)
           }
+        })
+      })
+    }
+
+    static updateOne(id, cart_stock) {
+      return new Promise((resolve, reject) =>{
+          let editCart = `UPDATE carts SET cart_stock = $1 WHERE id = $2`
+          let values = [cart_stock, +id]
+          pool.query(editCart, values, (err, result) => {
+            if(err) {
+              reject(err)
+            }else{
+              resolve(result)
+            }
+          })
+      })
+    }
+
+    static findOne(id) {
+      return new Promise((resolve, result) => {
+        let findProduct = `SELECT * FROM carts WHERE id = $1`
+        let value = [+id]
+        pool.query(findProduct, value, (err, data) => {
+            if(err) {
+                reject(err)
+            }else{
+                resolve(data)
+            }
         })
       })
     }
