@@ -1,4 +1,4 @@
-const { User } = require("../models")
+const { User, Cart } = require("../models")
 const { verifyToken } = require("../helpers")
 
 async function authorization(req, res, next) {
@@ -31,7 +31,21 @@ async function authentication(req, res, next) {
     }
 }
 
+async function authorize(req, res, next) {
+  try {
+    const cart = await Cart.findOne(req.params.id)
+    if(cart.rows[0].user_id === req.currentUser.id) {
+      next()
+    }else{
+      throw new Error
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   authorization,
   authentication,
+  authorize
 }
