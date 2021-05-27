@@ -13,6 +13,7 @@ class BannerController {
   static async addBanner ( req, res, next ) {
     try {
       const banner = await Banner.create(req.body)
+      console.log(banner)
       res.status(201).json(banner.rows[0])
     } catch (error) {
       next(error)

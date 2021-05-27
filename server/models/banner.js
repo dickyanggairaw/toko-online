@@ -25,7 +25,7 @@ class Banner {
   static create(body) {
     return new Promise((resolve, reject) => {
       let instance = new Banner(null, body.banner_address)
-      let addBanner = `INSERT INTO banners(banner_address) VALUES ($1)`
+      let addBanner = `INSERT INTO banners(banner_address) VALUES ($1) RETURNING *`
       let values = [instance.banner_address]
       pool.query(addBanner, values, (err, result) =>{
         if(err) {
