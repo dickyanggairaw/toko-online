@@ -63,15 +63,16 @@ export default {
 }
 .single-team .team-text {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   color: #fff;
   opacity: 0;
   transform: translateY(60px);
-  transition: 0.5s;
+  transition: 1s;
 }
 .single-team:hover .team-text {
   opacity: 1;
   transform: translateY(0);
+  transform: translateX(-140px);
 }
 .single-team:before {
   content: "";

@@ -8,22 +8,47 @@
         <input class="form-control mr-sm" type="search" placeholder="Search" aria-label="Search">
       </form>
     <div>
-      <a href="#" @click="login" v-if="!isLoginUser">Login</a>
+      <a href="#" @click="openModal" v-if="!isLoginUser">Login</a>
+      <Login v-show="isModalVisible" @close-modal="closeModal" />
       <a href="#" @click="register" v-if="!isLoginUser">Register</a>
+      <Register v-show="isRegister" @register-close="closeRegister" />
       <a href="#" v-if="isLoginUser">Logout</a>
     </div>
+    <!-- <Login class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"/> -->
   </div>
 </template>
 
 <script>
+import Login from '../views/Login' 
+import Register from '../views/Register'
 export default {
+  components: {
+    Login,
+    Register
+  },
+  data(){
+    return {  
+      isModalVisible: false,  
+      isRegister: false
+    }
+  }, 
   methods: {
     login () {
       this.$router.push('/login')
     },
     register () {
-      this.$router.push('/register')
-    }
+      this.isRegister = true;
+    },
+    closeRegister () {
+      console.log("bisa nav")
+      this.isRegister = false;
+    },
+    openModal() { 
+      this.isModalVisible = true;
+    }, 
+    closeModal() {
+      this.isModalVisible = false;
+    }, 
   }
 }
 </script>

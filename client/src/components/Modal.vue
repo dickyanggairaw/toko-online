@@ -3,26 +3,17 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Login</h4>
+          <h4 class="modal-title">Modal title</h4>
           <button type="button" class="btn btn-sm" v-on:click="closeModal">
           <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control mr-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control mr-sm" id="exampleInputPassword1">
-            </div><br>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+          <h1>Modal body</h1>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" v-on:click="closeModal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -30,7 +21,7 @@
 </template>
 <script>
   export default {
-    name: 'login',
+    name: 'modal',
    data(){
       return {
         //
