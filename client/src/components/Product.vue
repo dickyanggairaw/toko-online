@@ -1,12 +1,13 @@
 <template>
   <div class="container">
+    {{products}}
     <div class="row">
-      <div class="col-md-3 mb-4 team-area">
+      <div class="col-md-3 mb-4 team-area" v-for="product in products" :key="product.id">
         <div class="single-team">
-          <img src="https://id.360buyimg.com/Indonesia/s220x220_/nHBfsgABQgAAAAEAM9hZKgAA9lE.jpg.dpg.webp" class="w-100 item-cart-2" alt="...">
+          <img v-bind:src="product.image" class="w-100 item-cart-2" alt="...">
           <div class="card-body body-style team-text">
-            <h5 className="mb-0">Sepatu</h5>
-            <p className="mb-0">20 Likes</p>
+            <h5 className="mb-0">{{product.nama}}</h5>
+            <p className="mb-0">{{product.harga}}</p>
           </div>
         </div>
       </div>
@@ -43,7 +44,20 @@
 
 <script>
 export default {
-  name: 'Product'
+  name: 'Product',
+  methods: {
+    getProduct () {
+      this.$store.dispatch('getProducts')
+    }
+  },
+  computed:{
+    products () {
+      return this.$store.state.products
+    }
+  },
+  created(){
+    this.getProduct()
+  }
 }
 </script>
 

@@ -11,10 +11,9 @@
       <a href="#" @click="openModal" v-if="!isLoginUser">Login</a>
       <Login v-show="isModalVisible" @close-modal="closeModal" />
       <a href="#" @click="register" v-if="!isLoginUser">Register</a>
-      <Register v-show="isRegister" @register-close="closeRegister" />
+      <Register v-show="isRegister" @register-close="closeRegister"/>
       <a href="#" v-if="isLoginUser">Logout</a>
     </div>
-    <!-- <Login class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"/> -->
   </div>
 </template>
 
@@ -40,7 +39,6 @@ export default {
       this.isRegister = true;
     },
     closeRegister () {
-      console.log("bisa nav")
       this.isRegister = false;
     },
     openModal() { 
@@ -49,6 +47,11 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     }, 
+  },
+  computed: {
+    isLoginUser () {
+      return this.$store.state.isLogin
+    }
   }
 }
 </script>
