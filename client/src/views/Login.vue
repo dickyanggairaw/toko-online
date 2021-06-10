@@ -9,14 +9,14 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form @submit.prevent="loginForm">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control mr-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label>Email address</label>
+              <input type="email" class="form-control mr-sm" v-model="email">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control mr-sm" id="exampleInputPassword1">
+              <label>Password</label>
+              <input type="password" class="form-control mr-sm" v-model="password">
             </div><br>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -33,13 +33,24 @@
     name: 'login',
    data(){
       return {
-        //
+        email: '',
+        password: ''
       }
     },
     methods: {
       closeModal() {
         this.$emit('close-modal');
       },
+      loginForm () {
+        let data = {
+          email: this.email,
+          password: this.password
+        }
+        this.$store.dispatch('login', data)
+        this.closeModal()
+        this.email = ''
+        this.password = ''
+      }
     },
   };
 </script>

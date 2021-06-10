@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isLogin: false,
-    products: []
+    products: [],
+    carts: []
   },
   mutations: {
     setLogin(state, payload) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     setProducts(state, payload) {
       state.products = payload
+    },
+    setCart(state, payload){
+      state.carts = payload
     }
   },
   actions: {
@@ -40,8 +44,10 @@ export default new Vuex.Store({
         }
       })
         .then(({data}) => {
-          localStorage.setItem('access_token', data)
+          console.log(data)
+          localStorage.setItem('access_token', data.access_token)
           context.commit('setLogin', true)
+          alert("Success Login")
         })
         .catch((err) => {
           console.log(err)
@@ -60,8 +66,48 @@ export default new Vuex.Store({
           alert("Success Register")
         })
         .catch((err) => {
-          console.log(err)
+          alert(err)
         })
+    },
+    logout (context, payload){
+      localStorage.removeItem('access_token')
+      context.commit('setLogin', payload)
+    },
+    addCart (context, payload){
+      axios({
+        url: '/carts/' + payload,
+        method: 'POST',
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+        .then(() => alert("success add cart"))
+        .catch(err => console.log(err))
+    },
+    getCart (context) {
+      axios({
+        url: '/carts',
+        method: 'GET',
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+        .then(({data}) => context.commit('setCart', data))
+        .catch((err) => console.log(err))
+    },
+    deleteCart (context, payload) {
+      axios({
+        url: '/carts/' + payload.id,
+        method: 'DELETE',
+        headers: {
+          access_token: localStorage.access_token
+        }
+      })
+        .then(() => {
+          context.dispatch.getCart()
+          alert(`Success delete ${payload.nama}`)
+        })
+        .then((err) => console.log(err))
     }
   },
   modules: {

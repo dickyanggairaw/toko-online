@@ -9,21 +9,20 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form @submit.prevent="registerForm">
             <div class="form-group container">
               <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control mr-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input type="email" class="form-control mr-sm" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email">
             </div>
             <div class="form-group container">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control mr-sm" id="exampleInputPassword1">
+              <input type="password" class="form-control mr-sm" id="exampleInputPassword1" v-model="password">
             </div><br>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" v-on:click="closeModal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -34,7 +33,8 @@
     name: 'login',
    data(){
       return {
-        //
+        email: '',
+        password: ''
       }
     },
     methods: {
@@ -42,6 +42,16 @@
         console.log('bisa register')
         this.$emit('register-close');
       },
+      registerForm() {
+        let data = {
+          email: this.email,
+          password: this.password
+        }
+        this.$store.dispatch('register', data)
+        this.closeModal()
+        this.email = ''
+        this.password = ''
+      }
     },
   };
 </script>

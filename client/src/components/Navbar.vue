@@ -12,7 +12,8 @@
       <Login v-show="isModalVisible" @close-modal="closeModal" />
       <a href="#" @click="register" v-if="!isLoginUser">Register</a>
       <Register v-show="isRegister" @register-close="closeRegister"/>
-      <a href="#" v-if="isLoginUser">Logout</a>
+      <i class="fa fa-shopping-cart" aria-hidden="true" v-if="isLoginUser" @click="cart"></i>
+      <a href="#" v-if="isLoginUser" @click="logout">Logout</a>
     </div>
   </div>
 </template>
@@ -33,7 +34,9 @@ export default {
   }, 
   methods: {
     login () {
-      this.$router.push('/login')
+      if(localStorage.access_token){
+        this.$store.dispatch('logout', true)
+      }
     },
     register () {
       this.isRegister = true;
@@ -47,15 +50,30 @@ export default {
     closeModal() {
       this.isModalVisible = false;
     }, 
+    logout() {
+      this.$store.dispatch('logout', false)
+    },
+    cart () {
+      this.$router.push('/cart')
+    }
   },
   computed: {
     isLoginUser () {
       return this.$store.state.isLogin
     }
+  },
+  created() {
+    this.login()
   }
 }
 </script>
 
 <style>
-
+  i {
+    color: #42b983;
+  }
+  i:hover {
+    cursor: pointer;
+    color: black;
+  }
 </style>
